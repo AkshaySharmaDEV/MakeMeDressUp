@@ -6,16 +6,11 @@ public class ScreenshotDelay : MonoBehaviour
 {
 
      public GameObject panal;
+     public GameObject ButtonPanal;
    
 
      public float sec = 1f;
-     void Start()
-     {
-        //  if (panal.activeInHierarchy)
-        //      panal.SetActive(false);
- 
-        //  StartCoroutine(LateCall());
-     }
+     
 
     
      IEnumerator LateCall()
@@ -30,17 +25,43 @@ public class ScreenshotDelay : MonoBehaviour
   
      }
 
+     IEnumerator Makeitvisible()
+     {
+ 
+         yield return new WaitForSeconds(sec);
+ 
+         ButtonPanal.SetActive(true);
+
+         //Do Function here...
+         
+  
+     }
+
      public void show()
+     {
+
+         
+         if (panal.activeInHierarchy)
          {
 
-             Start();
-             if (panal.activeInHierarchy)
              panal.SetActive(false);
- 
-             StartCoroutine(LateCall());
-
 
          }
+         
+
+         StartCoroutine(LateCall());
+
+
+     }
+     public void disablebuttons()
+     {
+
+         StartCoroutine(Makeitvisible());
+         ButtonPanal.SetActive(false);
+
+     }
+
+
 
    
 }
